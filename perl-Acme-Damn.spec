@@ -4,14 +4,14 @@
 #
 Name     : perl-Acme-Damn
 Version  : 0.08
-Release  : 4
+Release  : 5
 URL      : https://cpan.metacpan.org/authors/id/I/IB/IBB/Acme-Damn-0.08.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IB/IBB/Acme-Damn-0.08.tar.gz
 Summary  : "'Unbless' Perl objects."
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
-Requires: perl-Acme-Damn-lib
-Requires: perl-Acme-Damn-man
+Requires: perl-Acme-Damn-lib = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Sub::Uplevel)
 BuildRequires : perl(Test::Exception)
 
@@ -25,20 +25,22 @@ my $obj = bless $ref , 'Some::Class';
 
 ... do something with your object ...
 
+%package dev
+Summary: dev components for the perl-Acme-Damn package.
+Group: Development
+Requires: perl-Acme-Damn-lib = %{version}-%{release}
+Provides: perl-Acme-Damn-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Acme-Damn package.
+
+
 %package lib
 Summary: lib components for the perl-Acme-Damn package.
 Group: Libraries
 
 %description lib
 lib components for the perl-Acme-Damn package.
-
-
-%package man
-Summary: man components for the perl-Acme-Damn package.
-Group: Default
-
-%description man
-man components for the perl-Acme-Damn package.
 
 
 %prep
@@ -67,9 +69,9 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -78,12 +80,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Acme/Damn.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Acme/Damn.pm
+
+%files dev
+%defattr(-,root,root,-)
+/usr/share/man/man3/Acme::Damn.3
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/Acme/Damn/Damn.so
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man3/Acme::Damn.3
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Acme/Damn/Damn.so

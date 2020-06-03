@@ -4,7 +4,7 @@
 #
 Name     : perl-Acme-Damn
 Version  : 0.08
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/I/IB/IBB/Acme-Damn-0.08.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IB/IBB/Acme-Damn-0.08.tar.gz
 Summary  : "'Unbless' Perl objects."
@@ -89,5 +89,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Acme/Damn.pm
-/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/Acme/Damn/Damn.so
+/usr/lib/perl5/vendor_perl/5.30.3/x86_64-linux-thread-multi/Acme/Damn.pm
+/usr/lib/perl5/vendor_perl/5.30.3/x86_64-linux-thread-multi/auto/Acme/Damn/Damn.so

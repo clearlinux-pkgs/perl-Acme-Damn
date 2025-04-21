@@ -7,7 +7,7 @@
 #
 Name     : perl-Acme-Damn
 Version  : 0.08
-Release  : 30
+Release  : 31
 URL      : https://cpan.metacpan.org/authors/id/I/IB/IBB/Acme-Damn-0.08.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IB/IBB/Acme-Damn-0.08.tar.gz
 Summary  : "'Unbless' Perl objects."
